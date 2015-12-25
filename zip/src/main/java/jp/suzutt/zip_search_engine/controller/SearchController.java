@@ -56,10 +56,10 @@ public class SearchController extends HttpServlet {
 	}
 
 	private ZipListBeans search(HttpServletRequest request, HttpServletResponse response) {
-		ZipListBeans zipListBeans = search(zipCode);
+//		ZipListBeans zipListBeans = search(zipCode);
 
-		HttpSession session = request.getSession();
-		session.setAttribute("zipCodeList", zipListBeans);
+//		HttpSession session = request.getSession();
+//		session.setAttribute("zipCodeList", zipListBeans);
 		return null;
 	}
 }

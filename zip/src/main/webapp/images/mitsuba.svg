@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN"
+       "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<!-- Created by amaya 11.4.7, see http://www.w3.org/Amaya/ -->
+<svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="200" height="200">
+  <title>Draw</title>
+  <circle cx="160px" cy="185px" r="34px"
+          style="   opacity: 1;stroke-opacity: 1;stroke:#42c75f;fill:#ffffff;stroke-width: 35"
+          transform="translate(-63,-133) "/>
+  <circle cx="117px" cy="194px" r="34px"
+          style="   stroke-opacity: 1;stroke:#42c75f;fill:#ffffff;stroke-width: 25"
+          transform="translate(-61,-80) "/>
+  <circle cx="134px" cy="174px" r="37px"
+          style="   stroke:#42c75f;stroke-opacity: 1;stroke-width: 30;fill:#ffffff;fill-opacity: 1"
+          transform="translate(0,-50) "/>
+</svg>

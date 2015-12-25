@@ -7,6 +7,7 @@
 <title>郵便番号検索画面</title>
 </head>
 <body>
+	<img src="<%=request.getContextPath() %>/images/mitsuba.svg">	
 	<form action="/zip/search" method="get">
 		<label>郵便番号</label> <input type="text" name="zipcode"> <br>
 		<button id="zipsearch">検索</button>
