@@ -25,5 +25,6 @@ CREATE TABLE zip
     , cd_4     NUMBER(1)
     , cd_5     NUMBER(1)
     , cd_6     NUMBER(1)
+    , CONSTRAINT     zip_cd_uk UNIQUE (zip_cd)
     ) ;
 ```
