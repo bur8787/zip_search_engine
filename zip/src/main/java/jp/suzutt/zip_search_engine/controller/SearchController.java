@@ -7,9 +7,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import jp.suzutt.zip_search_engine.beans.ZipListBeans;
+import jp.suzutt.zip_search_engine.dao.ZipSearchDao;
 
 /**
  * Servlet implementation class SearchController
@@ -18,6 +18,7 @@ public class SearchController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private static final String INDEX_JSP = "/WEB-INF/index.jsp";
+	private String zipCode;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -34,10 +35,13 @@ public class SearchController extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		String zipCode = request.getParameter("zipcode");
-
+		zipCode = request.getParameter("zipcode");
+		
+		
 		if (zipCode == null || zipCode.isEmpty()) {
 			initialize(request, response);
+		}else{
+			search(request, response);
 		}
 	}
 
@@ -57,7 +61,14 @@ public class SearchController extends HttpServlet {
 
 	private ZipListBeans search(HttpServletRequest request, HttpServletResponse response) {
 //		ZipListBeans zipListBeans = search(zipCode);
-
+		int intZipCode = Integer.parseInt(zipCode);
+		ZipSearchDao zipSearchDao = new ZipSearchDao();
+		try {
+			zipSearchDao.search(intZipCode);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 //		HttpSession session = request.getSession();
 //		session.setAttribute("zipCodeList", zipListBeans);
 		return null;
