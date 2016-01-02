@@ -5,11 +5,14 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import jp.suzutt.zip_search_engine.beans.ZipBeans;
+import jp.suzutt.zip_search_engine.beans.ZipListBeans;
+
 public class ZipSearchDao {
 
 	private static final String SQL = "SELECT * FROM ZIP WHERE ZIP_CD = ?";
 
-	public void search(int zipCode) throws Exception {
+	public ZipListBeans search(int zipCode) throws Exception {
 		Class.forName("org.h2.Driver");
 		Connection conn = DriverManager.getConnection("jdbc:h2:~/test", "sa",
 				"");
@@ -17,11 +20,20 @@ public class ZipSearchDao {
 		prepareStatement.setInt(1, zipCode);
 		ResultSet resultSet = prepareStatement.executeQuery();
 		
+		ZipListBeans zipListBeans = new ZipListBeans();
+		
 		while(resultSet.next()){
-			resultSet.getString("prefecture_name_knj");
-			resultSet.getString("city_name_knj");
-			resultSet.getString("address_name_knj");
+			ZipBeans zipBeans = new ZipBeans();
+			
+			zipBeans.setZipCode(resultSet.getInt("ZIP_CD"));
+			zipBeans.setPrefectureName(resultSet.getString("PREFECTURE_NAME_KNJ"));
+			zipBeans.setCityName(resultSet.getString("CITY_NAME_KNJ"));
+			zipBeans.setAddressName(resultSet.getString("ADDRESS_NAME_KNJ"));
+			
+			zipListBeans.addZip(zipBeans);
 		}
 		conn.close();
+		
+		return zipListBeans;
 	}
 }

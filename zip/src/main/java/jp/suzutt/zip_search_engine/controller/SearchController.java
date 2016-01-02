@@ -59,18 +59,17 @@ public class SearchController extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 
-	private ZipListBeans search(HttpServletRequest request, HttpServletResponse response) {
-//		ZipListBeans zipListBeans = search(zipCode);
+	private void search(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int intZipCode = Integer.parseInt(zipCode);
 		ZipSearchDao zipSearchDao = new ZipSearchDao();
+		ZipListBeans zipListBeans = null;
 		try {
-			zipSearchDao.search(intZipCode);
+			zipListBeans = zipSearchDao.search(intZipCode);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-//		HttpSession session = request.getSession();
-//		session.setAttribute("zipCodeList", zipListBeans);
-		return null;
+		request.setAttribute("zipList", zipListBeans);
+		RequestDispatcher dispatcher = request.getRequestDispatcher(INDEX_JSP);
+		dispatcher.forward(request, response);
 	}
 }
