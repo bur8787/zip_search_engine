@@ -28,9 +28,17 @@
 		<servlet-name>DefaultController</servlet-name>
 		<servlet-class>jp.suzutt.zip_search_engine.controller.DefaultController</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>EntryController</servlet-name>
+		<servlet-class>jp.suzutt.zip_search_engine.controller.EntryController</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>SearchController</servlet-name>
 		<url-pattern>/search</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EntryController</servlet-name>
+		<url-pattern>/entry</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>DefaultController</servlet-name>

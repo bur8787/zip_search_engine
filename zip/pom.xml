@@ -29,6 +29,11 @@
       <artifactId>taglibs-standard-impl</artifactId>
       <version>1.2.5</version>
     </dependency>
+    <dependency>
+    <groupId>org.apache.commons</groupId>
+    <artifactId>commons-csv</artifactId>
+    <version>1.2</version>
+</dependency>
   </dependencies>
   <build>
     <finalName>zip_search_engine</finalName>
