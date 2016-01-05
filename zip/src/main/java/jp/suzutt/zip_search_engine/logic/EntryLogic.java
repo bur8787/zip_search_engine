@@ -10,10 +10,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.Charset;
+import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 public class EntryLogic {
-	private static final String downloadPath = "http://www.post.japanpost.jp/zipcode/dl/kogaki/zip/add_1512.zip";
+	private static final String downloadPath = "http://www.post.japanpost.jp/zipcode/dl/kogaki/zip/ken_all.zip";
 
 	public void entry() {
 		try {
@@ -23,21 +24,27 @@ public class EntryLogic {
 				HttpURLConnection conn = (HttpURLConnection) openConnection;
 				try (InputStream inputStream = conn.getInputStream()) {
 					File tempFile = File.createTempFile("tmp", ".zip");
-					FileOutputStream outputStream = new FileOutputStream(
-							tempFile);
-					byte[] buf = new byte[1024 * 8];
-					int length = 0;
-					while ((length = inputStream.read(buf)) != -1) {
-						outputStream.write(buf, 0, length);
-					}
-					FileInputStream zipFile = new FileInputStream(tempFile);
-					ZipInputStream zipInputStream = new ZipInputStream(zipFile,
-							Charset.forName("UTF-8"));
-					while(zipInputStream.getNextEntry() != null){
-						while ((length = zipInputStream.read(buf)) != -1) {
+
+					try (FileOutputStream outputStream = new FileOutputStream(
+							tempFile)) {
+						byte[] buf = new byte[1024 * 8];
+						int length = 0;
+						while ((length = inputStream.read(buf)) != -1) {
 							outputStream.write(buf, 0, length);
 						}
-					zipInputStream.closeEntry();
+						try (FileInputStream zipFile = new FileInputStream(
+								tempFile);
+								ZipInputStream zipInputStream = new ZipInputStream(
+										zipFile, Charset.forName("UTF-8"))) {
+							ZipEntry entry = zipInputStream.getNextEntry();
+							try (FileOutputStream csvOutputStream = new FileOutputStream(
+									entry.getName())) {
+								while ((length = zipInputStream.read(buf)) != -1) {
+									csvOutputStream.write(buf, 0, length);
+								}
+								zipInputStream.closeEntry();
+							}
+						}
 					}
 				}
 			}

@@ -32,6 +32,13 @@
 		<servlet-name>EntryController</servlet-name>
 		<servlet-class>jp.suzutt.zip_search_engine.controller.EntryController</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>SystemPrintController</display-name>
+		<servlet-name>SystemPrintController</servlet-name>
+		<servlet-class>jp.suzutt.zip_search_engine.controller.SystemPrintController</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>SearchController</servlet-name>
 		<url-pattern>/search</url-pattern>
@@ -43,6 +50,10 @@
 	<servlet-mapping>
 		<servlet-name>DefaultController</servlet-name>
 		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>SystemPrintController</servlet-name>
+		<url-pattern>/system/print</url-pattern>
 	</servlet-mapping>
 	<listener>
 		<listener-class>org.h2.server.web.DbStarter</listener-class>
